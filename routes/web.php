@@ -11,9 +11,10 @@ Route::get('/', function () {
     );
 });
 Route::get('/jobs', function () {
+    $Jobs = Job::with('employer')->get();
     return view(
         'jobs',
-        ['jobs' => Job::all()]
+        ['jobs' => $Jobs]
     );
 });
 Route::get('/jobs/{id}', function ($id) {

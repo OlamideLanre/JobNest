@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:heading>Create an account</x-slot:heading>
-   <form method="GET" action="">
+   <form method="POST" action="/register">
     @csrf
   <div class="space-y-12">
     <div class="border-b border-gray-900/10 pb-12">

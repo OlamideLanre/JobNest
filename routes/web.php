@@ -3,6 +3,7 @@
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
+use App\Jobs\TranslateJob;
 use App\Mail\JobPosted;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +13,14 @@ use Illuminate\Support\Facades\Mail;
 Route::view('/', 'home');
 Route::view('/contact', 'contact');
 // Route::resource('jobs', JobController::class)->only(['index', 'show'])->middleware('auth');
+Route::get('test', function () {
+    $job = Job::first();
+    TranslateJob::dispatch($job);
+    // dispatch(function () {
+    //     logger("hello from the queue");
+    // })->delay(5);
+    return 'done!';
+});
 
 Route::get('/jobs', [JobController::class, 'index']);
 Route::get('/jobs/create', [JobController::class, 'create']);
